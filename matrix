@@ -14,10 +14,10 @@ print_to() {
 rain() {
     ((dropStart=SRANDOM%LINES/9))
     ((dropCol=SRANDOM%COLUMNS+1))
-    ((dropLen=SRANDOM%(LINES/2)+2))
-    ((dropSpeed=SRANDOM%9+1))
+    ((dropLen=SRANDOM%(LINES/2)+5))
+    ((dropSpeed=SRANDOM%9+100))
     ((dropColDim=SRANDOM%4))
-    color="${COLORS[SRANDOM%${#COLORS}]}"
+    color="102;255;102"
 
     for ((i = dropStart; i <= LINES+dropLen; i++)); do
         symbol="${1:SRANDOM%${#1}:1}"
@@ -34,7 +34,7 @@ trap 'wait; exit' INT
 trap 'init_term' WINCH
 
 SYMBOLS='0123456789!@#$%^&*()-_=+[]{}|;:,.<>?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-COLORS=('102;255;102' '255;176;0' '169;169;169')
+# COLORS=('102;255;102' '255;176;0' '169;169;169')
 
 matrix() {
     init_term|| { printf 'Failed initializing terminal\n'; return 1; }
